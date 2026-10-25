@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bavsckgpx1cvy" path="res://Scripts/tabs.gd" id="2_kry3j"]
 [ext_resource type="Script" uid="uid://bun8bkovfw3ub" path="res://Scripts/search_bar.gd" id="4_21xkr"]
 [ext_resource type="Script" uid="uid://b2usdo4rmqrb1" path="res://Scripts/input_handler.gd" id="5_kry3j"]
+[ext_resource type="Script" uid="uid://cahijqdo2nep" path="res://Scripts/download_manager.gd" id="6_6bp64"]
 [ext_resource type="Script" uid="uid://dhyajn5i656sy" path="res://Scripts/tab_manager.gd" id="6_21xkr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2yge"]
@@ -82,7 +83,12 @@ script = ExtResource("5_kry3j")
 
 [node name="TabManager" type="Node2D" parent="." unique_id=459527625]
 script = ExtResource("6_21xkr")
-TabList = PackedStringArray("youtube.com")
+TabList = PackedStringArray("0")
 
+[node name="DownloadManager" type="Node2D" parent="." unique_id=2108502837]
+script = ExtResource("6_6bp64")
+
+[connection signal="download_requested" from="CefTexture" to="DownloadManager" method="on_download_requested"]
+[connection signal="download_updated" from="CefTexture" to="DownloadManager" method="on_download_updated"]
 [connection signal="title_changed" from="CefTexture" to="Tabs" method="on_cef_texture_title_changed"]
 [connection signal="text_submitted" from="SearchBar/LineEdit" to="SearchBar" method="_on_line_edit_text_submitted"]
