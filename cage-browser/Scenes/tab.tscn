@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://bvdnbl47nf283"]
+
+[ext_resource type="Script" uid="uid://d14f815ib3bh0" path="res://Scripts/tab.gd" id="1_5vf03"]
+[ext_resource type="Texture2D" uid="uid://08hf2lr06wj4" path="res://icon.svg" id="1_kab8h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bvp3"]
+bg_color = Color(0, 0, 0, 0)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
+bg_color = Color(0.10747974, 0.10747974, 0.10747967, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kry3j"]
+font_size = 12
+
+[node name="Tab" type="Panel" unique_id=1803343302 groups=["Tab"]]
+theme_override_styles/panel = SubResource("StyleBoxFlat_1bvp3")
+script = ExtResource("1_5vf03")
+
+[node name="Panel" type="Panel" parent="." unique_id=780317103]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 126.0
+offset_bottom = 21.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lquwl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel" unique_id=1482174220]
+position = Vector2(13.999999, 9.999999)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_kab8h")
+
+[node name="Label" type="Label" parent="Panel" unique_id=1562279731]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_top = -1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Tab"
+label_settings = SubResource("LabelSettings_kry3j")
+vertical_alignment = 1

@@ -23,3 +23,20 @@ mono_crash.*.json
 *.exe
 # Uncomment if your project does not version PCK files as runtime dependencies.
 # *.pck
+
+# Third-party CEF/wry binaries and download archives (several GB, not source)
+/cage-browser/addons/godot_cef/bin/
+/cage-browser/addons/godot_wry.disabled/
+/cage-browser/ZIPs/
+
+# Archives
+*.zip
+*.tar
+*.tar.*
+*.xz
+*.7z
+*.rar
+
+# Krita backup files
+*~
+*.kra~
