@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://cesn8jxyak10k"]
 
 [ext_resource type="Script" uid="uid://dflp5m3lh122k" path="res://Scripts/main.gd" id="1_jjvhh"]
-[ext_resource type="Script" uid="uid://bavsckgpx1cvy" path="res://Scripts/tabs.gd" id="2_kry3j"]
+[ext_resource type="Script" uid="uid://bavsckgpx1cvy" path="res://Scripts/event_manager.gd" id="2_kry3j"]
+[ext_resource type="StyleBox" uid="uid://cyg6xtxp7o1y1" path="res://WithoutBorder.tres" id="3_344ge"]
 [ext_resource type="Script" uid="uid://bun8bkovfw3ub" path="res://Scripts/search_bar.gd" id="4_21xkr"]
+[ext_resource type="StyleBox" uid="uid://bckep5bt1chq4" path="res://WithOutline.tres" id="4_ynf5e"]
 [ext_resource type="Script" uid="uid://b2usdo4rmqrb1" path="res://Scripts/input_handler.gd" id="5_kry3j"]
 [ext_resource type="Script" uid="uid://cahijqdo2nep" path="res://Scripts/download_manager.gd" id="6_6bp64"]
 [ext_resource type="Script" uid="uid://dhyajn5i656sy" path="res://Scripts/tab_manager.gd" id="6_21xkr"]
@@ -24,6 +26,8 @@ layout_mode = 0
 offset_right = 126.0
 offset_bottom = 648.0
 script = ExtResource("2_kry3j")
+style_ohne_rand = ExtResource("3_344ge")
+style_mit_rand = ExtResource("4_ynf5e")
 
 [node name="BoxContainer" type="BoxContainer" parent="Tabs" unique_id=1211687631]
 layout_mode = 1
@@ -40,8 +44,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 126.0
-offset_right = 126.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 2
@@ -91,5 +93,6 @@ script = ExtResource("6_6bp64")
 [connection signal="console_message" from="CefTexture" to="Tabs" method="on_console_message"]
 [connection signal="download_requested" from="CefTexture" to="DownloadManager" method="on_download_requested"]
 [connection signal="download_updated" from="CefTexture" to="DownloadManager" method="on_download_updated"]
+[connection signal="load_finished" from="CefTexture" to="Tabs" method="on_cef_texture_load_finished"]
 [connection signal="title_changed" from="CefTexture" to="Tabs" method="on_cef_texture_title_changed"]
 [connection signal="text_submitted" from="SearchBar/LineEdit" to="SearchBar" method="_on_line_edit_text_submitted"]

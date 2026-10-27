@@ -15,3 +15,8 @@ func _ready():
 		webview.offset_bottom = 0
 		webview.mouse_filter = Control.MOUSE_FILTER_STOP
 		webview.focus_mode = Control.FOCUS_ALL
+		$TabManager.ExitFullscreenEverything()
+
+
+func _on_cef_texture_load_finished(url: String, http_status_code: int) -> void:
+	pass # Replace with function body.

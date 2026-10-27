@@ -80,7 +80,7 @@ func NewTab():
 		newCef.mouse_filter = Control.MOUSE_FILTER_STOP
 		newCef.focus_mode = Control.FOCUS_ALL
 	$"..".add_child(newCef)
-
+	ExitFullscreenEverything()
 	# Show only the new tab's texture
 	var cef_nodes = get_tree().get_nodes_in_group(CefTextureGroupName)
 	for i in range(cef_nodes.size()):
@@ -103,6 +103,7 @@ func NewTab():
 	newCef.download_requested.connect($"../DownloadManager".on_download_requested)
 	newCef.download_updated.connect($"../DownloadManager".on_download_updated)
 	newCef.console_message.connect($"../Tabs".on_console_message)
+	newCef.load_finished.connect($"../Tabs/BoxContainer".get_child($"../Tabs".index).get_child(0).get_child(0).on_page_loaded)
 
 #func OpenDevTools():
 #	var cef : CefTexture = get_tree().get_nodes_in_group(CefTextureGroupName)[$"../Tabs".index]
@@ -161,7 +162,20 @@ func FIPPrevious():
 
 func ExcJS(code:String):
 	var cef : CefTexture = get_tree().get_nodes_in_group(CefTextureGroupName)[$"../Tabs".index]
+	#print("Executing: " , code)
 	cef.eval(code)
+
+func FullscreenEverything():
+	var acefs = get_tree().get_nodes_in_group(CefTextureGroupName)
+	for cef: Control in acefs:
+		cef.global_position = Vector2(0.0, 0.0)
+		cef.size = Vector2(1152.0, 648.0)
+
+func ExitFullscreenEverything():
+	var acefs = get_tree().get_nodes_in_group(CefTextureGroupName)
+	for cef: Control in acefs:
+		cef.global_position = Vector2(126.0, 0.0)
+		cef.size = Vector2(1026.0, 648.0)
 
 func ResetZoom():
 	var cef : CefTexture = get_tree().get_nodes_in_group(CefTextureGroupName)[$"../Tabs".index]
@@ -176,7 +190,14 @@ func ZoomOut():
 	cef.set_zoom_level(cef.get_zoom_level()-0.1)
 
 func SwitchTab():
-	pass
+	if $"../Tabs".index < len(TabList)-1:
+		$"../Tabs".index += 1
+	else:
+		$"../Tabs".index = 0
+	var acefs = get_tree().get_nodes_in_group(CefTextureGroupName)
+	for cef in acefs:
+		cef.visible = false
+	acefs[$"../Tabs".index].visible = true
 
 ######## GET ########
 

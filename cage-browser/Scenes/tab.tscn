@@ -2,13 +2,12 @@
 
 [ext_resource type="Script" uid="uid://d14f815ib3bh0" path="res://Scripts/tab.gd" id="1_5vf03"]
 [ext_resource type="Texture2D" uid="uid://08hf2lr06wj4" path="res://icon.svg" id="1_kab8h"]
+[ext_resource type="StyleBox" uid="uid://cyg6xtxp7o1y1" path="res://WithoutBorder.tres" id="2_ti34l"]
+[ext_resource type="Script" uid="uid://b5l0ejba1a5hf" path="res://Scripts/sprite_2d.gd" id="4_v80lh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bvp3"]
 bg_color = Color(0, 0, 0, 0)
 corner_detail = 1
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
-bg_color = Color(0.10747974, 0.10747974, 0.10747967, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_kry3j"]
 font_size = 12
@@ -24,12 +23,13 @@ anchor_bottom = 1.0
 offset_right = 126.0
 offset_bottom = 21.0
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_lquwl")
+theme_override_styles/panel = ExtResource("2_ti34l")
 
 [node name="Sprite2D" type="Sprite2D" parent="Panel" unique_id=1482174220]
 position = Vector2(13.999999, 9.999999)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_kab8h")
+script = ExtResource("4_v80lh")
 
 [node name="Label" type="Label" parent="Panel" unique_id=1562279731]
 layout_mode = 1
