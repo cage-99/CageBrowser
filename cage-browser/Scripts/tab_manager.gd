@@ -6,6 +6,7 @@ extends Node2D
 var tabScene : PackedScene = preload("res://Scenes/tab.tscn")
 @onready var TabsParent = $"../Tabs/BoxContainer"
 var CefTextureGroupName = "CefTexture"
+var devtools_browser = null
 
 var currentTabCount = 0
 
@@ -101,6 +102,35 @@ func NewTab():
 	newCef.title_changed.connect($"../Tabs".on_cef_texture_title_changed) 
 	newCef.download_requested.connect($"../DownloadManager".on_download_requested)
 	newCef.download_updated.connect($"../DownloadManager".on_download_updated)
+	newCef.console_message.connect($"../Tabs".on_console_message)
+
+#func OpenDevTools():
+#	var cef : CefTexture = get_tree().get_nodes_in_group(CefTextureGroupName)[$"../Tabs".index]
+#	toggle_devtools_window(cef)
+
+func toggle_devtools_window(cef_texture):
+	# Wenn das Fenster bereits offen ist, schließen wir es (bzw. zerstören die Node)
+	if is_instance_valid(devtools_browser):
+		devtools_browser.queue_free()
+		devtools_browser = null
+		return
+		
+	# Erstelle dynamisch eine neue CefTexture-Instanz für die DevTools
+	devtools_browser = cef_texture.duplicate()
+	
+	# Da GodotCEF standardmäßig auf Port 9229 lauscht, rufen wir das lokale Inspect-Interface auf
+	var devtools_url = "http://127.0.0.1:9229"
+	
+	# Füge die Node dem aktuellen Viewport hinzu
+	add_child(devtools_browser)
+	
+	# Lade die DevTools-Schnittstelle im neuen "Fenster"
+	if devtools_browser.has_method("load_url"):
+		devtools_browser.load_url("http://127.0.0.1:9229")
+	
+	# Optional: Setze die Position/Größe des neuen Overlays (z.B. als rechte Bildschirmhälfte)
+	devtools_browser.size = Vector2(get_viewport().size.x / 2, get_viewport().size.y)
+	devtools_browser.position = Vector2(get_viewport().size.x / 2, 0)
 
 func ReloadTab():
 	var cef : CefTexture = get_tree().get_nodes_in_group(CefTextureGroupName)[$"../Tabs".index]

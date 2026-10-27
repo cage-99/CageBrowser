@@ -27,3 +27,7 @@ func _on_line_edit_text_submitted(new_text: String) -> void:
 		if cef.has_method("load_url"):
 			cef.load_url(url)
 		cef.grab_focus()
+
+func _ready() -> void:
+	self.hide()
+	#$LineEdit.grab_focus()

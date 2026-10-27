@@ -35,3 +35,19 @@ func _process(delta: float) -> void:
 		$"../TabManager".ForceReloadTab()
 	elif Input.is_action_just_pressed("ui_switch_tab"):
 		$"../TabManager".SwitchTab()
+	#elif Input.is_action_just_pressed("ui_open_devtools"):
+	#	$"../TabManager".OpenDevTools()
+	elif Input.is_action_just_pressed("ui_search_focus"):
+		$"../TabManager".ExcJS('''var inputs, index;
+
+inputs = document.getElementsByTagName('textarea');
+for (index = 0; index < inputs.length; ++index) {
+    console.log(inputs[index].outerHTML)
+	var number = document.createElement("p");
+	number.textContent = index.toString()
+	inputs[index].parentElement.appendChild(number);
+} ''')
+	elif Input.is_action_just_pressed("ui_toggle_tabs"):
+		pass
+	elif Input.is_action_just_pressed("ui_open_downloads"):
+		pass
