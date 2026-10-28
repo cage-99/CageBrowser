@@ -64,9 +64,9 @@ func _process(delta: float) -> void:
 	document.body.click()
     if (searchInput) {
         // 1. Klick-Event simulieren, um YouTubes UI-Status auf "aktiv" zu setzen
-        searchInput.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true }));
-        searchInput.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true }));
-        searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+		searchInput.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true }));
+		searchInput.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true }));
+		searchInput.dispatchEvent(new Event('input', { bubbles: true }));
 		searchInput.click();
         
         // 2. Den Fokus erzwingen
@@ -100,9 +100,9 @@ func _process(delta: float) -> void:
 	document.body.click()
     if (searchInput) {
         // 1. Klick-Event simulieren, um YouTubes UI-Status auf "aktiv" zu setzen
-        searchInput.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true }));
-        searchInput.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true }));
-        searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+		searchInput.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true }));
+		searchInput.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true }));
+		searchInput.dispatchEvent(new Event('input', { bubbles: true }));
 		searchInput.click();
         
         // 2. Den Fokus erzwingen
@@ -136,9 +136,9 @@ func _process(delta: float) -> void:
 	document.body.click()
     if (searchInput) {
         // 1. Klick-Event simulieren, um YouTubes UI-Status auf "aktiv" zu setzen
-        searchInput.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true }));
-        searchInput.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true }));
-        searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+		searchInput.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true }));
+		searchInput.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true }));
+		searchInput.dispatchEvent(new Event('input', { bubbles: true }));
 		searchInput.click();
         
         // 2. Den Fokus erzwingen
@@ -172,9 +172,9 @@ func _process(delta: float) -> void:
 	document.body.click()
     if (searchInput) {
         // 1. Klick-Event simulieren, um YouTubes UI-Status auf "aktiv" zu setzen
-        searchInput.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true }));
-        searchInput.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true }));
-        searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+		searchInput.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true }));
+		searchInput.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true }));
+		searchInput.dispatchEvent(new Event('input', { bubbles: true }));
 		searchInput.click();
         
         // 2. Den Fokus erzwingen
@@ -208,9 +208,9 @@ func _process(delta: float) -> void:
 	document.body.click()
     if (searchInput) {
         // 1. Klick-Event simulieren, um YouTubes UI-Status auf "aktiv" zu setzen
-        searchInput.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true }));
-        searchInput.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true }));
-        searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+		searchInput.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true }));
+		searchInput.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true }));
+		searchInput.dispatchEvent(new Event('input', { bubbles: true }));
 		searchInput.click();
         
         // 2. Den Fokus erzwingen
@@ -244,9 +244,9 @@ func _process(delta: float) -> void:
 	document.body.click()
     if (searchInput) {
         // 1. Klick-Event simulieren, um YouTubes UI-Status auf "aktiv" zu setzen
-        searchInput.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true }));
-        searchInput.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true }));
-        searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+		searchInput.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true }));
+		searchInput.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true }));
+		searchInput.dispatchEvent(new Event('input', { bubbles: true }));
 		searchInput.click();
         
         // 2. Den Fokus erzwingen
@@ -280,9 +280,9 @@ setTimeout(() => {
 	document.body.click()
     if (searchInput) {
         // 1. Klick-Event simulieren, um YouTubes UI-Status auf "aktiv" zu setzen
-        searchInput.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true }));
-        searchInput.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true }));
-        searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+		searchInput.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true }));
+		searchInput.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true }));
+		searchInput.dispatchEvent(new Event('input', { bubbles: true }));
         searchInput.click();
         
         // 2. Den Fokus erzwingen
@@ -316,9 +316,9 @@ setTimeout(() => {
 	document.body.click()
     if (searchInput) {
         // 1. Klick-Event simulieren, um YouTubes UI-Status auf "aktiv" zu setzen
-        searchInput.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true }));
-        searchInput.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true }));
-        searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+		searchInput.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true }));
+		searchInput.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true }));
+		searchInput.dispatchEvent(new Event('input', { bubbles: true }));
 		searchInput.click();
         
         // 2. Den Fokus erzwingen
@@ -352,9 +352,9 @@ setTimeout(() => {
 	document.body.click()
     if (searchInput) {
         // 1. Klick-Event simulieren, um YouTubes UI-Status auf "aktiv" zu setzen
-        searchInput.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true }));
-        searchInput.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true }));
-        searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+		searchInput.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true }));
+		searchInput.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true }));
+		searchInput.dispatchEvent(new Event('input', { bubbles: true }));
 		searchInput.click();
         
         // 2. Den Fokus erzwingen
@@ -388,9 +388,9 @@ setTimeout(() => {
 	document.body.click()
     if (searchInput) {
         // 1. Klick-Event simulieren, um YouTubes UI-Status auf "aktiv" zu setzen
-        searchInput.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true }));
-        searchInput.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true }));
-        searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+		searchInput.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true }));
+		searchInput.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true }));
+		searchInput.dispatchEvent(new Event('input', { bubbles: true }));
 		searchInput.click();
         
         // 2. Den Fokus erzwingen

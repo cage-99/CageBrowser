@@ -38,8 +38,11 @@ func _ready() -> void:
 	if error != OK:
 		push_error("Fehler beim Starten des Favicon-Downloads.")'''
 
+func on_page_start_loading(url: String) -> void:
+	self.visible = false
 
 func on_page_loaded(url: String, http_status_code: int) -> void:
+	self.visible = true
 	var aktuelle_url = url
 	if aktuelle_url.is_empty(): return
 	
@@ -126,7 +129,44 @@ func _on_favicon_downloaded(result: int, response_code: int, headers: PackedStri
 
 	push_error("ICO-Konvertierung fehlgeschlagen: Dateiformat nicht unterstützt.")
 
+# Die absolute Zielgröße für alle Icons im Spiel (in Pixeln)
+const ZIEL_GROESSE = Vector2i(16, 16)
+
 func _apply_texture(img: Image) -> void:
-	var neue_textur = ImageTexture.create_from_image(img)
+	# 1. Unsichtbare Ränder der Originaldatei wegschneiden
+	var echtes_logo_rechteck = img.get_used_rect()
+	if echtes_logo_rechteck.size.x > 0 and echtes_logo_rechteck.size.y > 0:
+		img = img.get_region(echtes_logo_rechteck)
+	
+	# 2. Seitenverhältnis beibehalten und die optimale Skalierung berechnen
+	var orig_w = img.get_width()
+	var orig_h = img.get_height()
+	
+	var scale_factor = min(float(ZIEL_GROESSE.x) / orig_w, float(ZIEL_GROESSE.y) / orig_h)
+	
+	var neue_breite = max(1, int(orig_w * scale_factor))
+	var neue_hoehe = max(1, int(orig_h * scale_factor))
+	
+	# Das Logo proportional skalieren, damit nichts verzerrt
+	img.resize(neue_breite, neue_hoehe, Image.INTERPOLATE_LANCZOS)
+	
+	# 3. Das "Genormte Quadrat" erschaffen: Ein leeres, transparentes Bild (32x32)
+	var final_canvas = Image.create_empty(ZIEL_GROESSE.x, ZIEL_GROESSE.y, false, Image.FORMAT_RGBA8)
+	
+	# Die exakte Mitte berechnen, um das Logo perfekt zu zentrieren
+	var cent_x = (ZIEL_GROESSE.x - neue_breite) / 2
+	var cent_y = (ZIEL_GROESSE.y - neue_hoehe) / 2
+	
+	# Das proportionale Logo zentriert auf das transparente Quadrat draufstempeln
+	final_canvas.blit_rect(img, Rect2i(0, 0, neue_breite, neue_hoehe), Vector2i(cent_x, cent_y))
+	
+	# 4. Textur erstellen und zuweisen
+	var neue_textur = ImageTexture.create_from_image(final_canvas)
 	self.texture = neue_textur
-	print("Favicon erfolgreich geladen und im Sprite2D angezeigt!")
+	
+	# WICHTIG: Setze die Skalierung des Sprite2D-Nodes zurück auf 1!
+	# Die Größe wird jetzt direkt über die Pixelanzahl des Bildes bestimmt.
+	self.scale = Vector2.ONE
+	
+	self.visible = true
+	print("Favicon vollautomatisch zentriert auf exakt ", ZIEL_GROESSE.x, "x", ZIEL_GROESSE.y, " Pixel normiert!")

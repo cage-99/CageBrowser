@@ -27,7 +27,7 @@ theme_override_styles/panel = ExtResource("2_ti34l")
 
 [node name="Sprite2D" type="Sprite2D" parent="Panel" unique_id=1482174220]
 position = Vector2(13.999999, 9.999999)
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.05, 0.05)
 texture = ExtResource("1_kab8h")
 script = ExtResource("4_v80lh")
 

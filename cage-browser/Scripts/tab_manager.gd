@@ -104,6 +104,7 @@ func NewTab():
 	newCef.download_updated.connect($"../DownloadManager".on_download_updated)
 	newCef.console_message.connect($"../Tabs".on_console_message)
 	newCef.load_finished.connect($"../Tabs/BoxContainer".get_child($"../Tabs".index).get_child(0).get_child(0).on_page_loaded)
+	newCef.load_started.connect($"../Tabs/BoxContainer".get_child($"../Tabs".index).get_child(0).get_child(0).on_page_start_loading)
 
 #func OpenDevTools():
 #	var cef : CefTexture = get_tree().get_nodes_in_group(CefTextureGroupName)[$"../Tabs".index]
@@ -220,3 +221,5 @@ func CheckMissing() -> int:
 
 func _ready() -> void:
 	UpdateTabList()
+	$"../CefTexture".load_finished.connect($"../Tabs/BoxContainer".get_child(0).get_child(0).get_child(0).on_page_loaded)
+	$"../CefTexture".load_started.connect($"../Tabs/BoxContainer".get_child(0).get_child(0).get_child(0).on_page_start_loading)
