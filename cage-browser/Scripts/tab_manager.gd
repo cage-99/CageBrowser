@@ -67,7 +67,7 @@ func CloseTab():
 func NewTab():
 	TabList.append(str(len(TabList)))
 	
-	var newCef = CefTexture.new()
+	var newCef : CefTexture = CefTexture.new()
 	newCef.add_to_group(CefTextureGroupName)
 	if newCef:
 		newCef.url = "https://google.com"
@@ -151,7 +151,18 @@ func RedoForward():
 	cef.go_forward()
 
 func FindInPage():
-	pass
+	$"../FIP".visible = !$"../FIP".visible
+	var cef : CefTexture = get_tree().get_nodes_in_group(CefTextureGroupName)[$"../Tabs".index]
+	if $"../FIP".visible:
+		$"../FIP/LineEdit".grab_focus()
+	else:
+		$"../FIP/LineEdit".text = ""
+		cef.grab_focus()
+	cef.find_text("", true, false)
+
+func _on_line_edit_text_changed(new_text: String) -> void:
+	var cef : CefTexture = get_tree().get_nodes_in_group(CefTextureGroupName)[$"../Tabs".index]
+	cef.find_text(new_text, true, false)
 
 func FIPNext():
 	var cef : CefTexture = get_tree().get_nodes_in_group(CefTextureGroupName)[$"../Tabs".index]
@@ -195,6 +206,16 @@ func SwitchTab():
 		$"../Tabs".index += 1
 	else:
 		$"../Tabs".index = 0
+	var acefs = get_tree().get_nodes_in_group(CefTextureGroupName)
+	for cef in acefs:
+		cef.visible = false
+	acefs[$"../Tabs".index].visible = true
+
+func SwitchTabBack():
+	if $"../Tabs".index < len(TabList)-1:
+		$"../Tabs".index -= 1
+	else:
+		$"../Tabs".index = len(get_tree().get_nodes_in_group(CefTextureGroupName))-1
 	var acefs = get_tree().get_nodes_in_group(CefTextureGroupName)
 	for cef in acefs:
 		cef.visible = false

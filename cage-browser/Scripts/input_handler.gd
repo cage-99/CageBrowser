@@ -6,6 +6,8 @@ var fullscreen = false
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_find_in_page"):
 		$"../TabManager".FindInPage()
+	elif Input.is_action_just_pressed("ui_fill_kpxc"):
+		$"../Tabs".on_autofill_button_pressed()
 	elif Input.is_action_just_pressed("ui_fip_next"):
 		$"../TabManager".FIPNext()
 	elif Input.is_action_just_pressed("ui_fip_previous"):
@@ -36,6 +38,8 @@ func _process(delta: float) -> void:
 		$"../TabManager".ReloadTab()
 	elif Input.is_action_just_pressed("ui_force_reload"):
 		$"../TabManager".ForceReloadTab()
+	elif Input.is_action_just_pressed("ui_switch_tab_backwards"):
+		$"../TabManager".SwitchTabBack()
 	elif Input.is_action_just_pressed("ui_switch_tab"):
 		$"../TabManager".SwitchTab()
 	#elif Input.is_action_just_pressed("ui_open_devtools"):

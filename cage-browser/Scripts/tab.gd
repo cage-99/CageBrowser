@@ -10,4 +10,5 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if TabName != _otn:
 		$Panel/Label.text = TabName
+		$Panel/Label.tooltip_text = TabName
 		_otn = TabName

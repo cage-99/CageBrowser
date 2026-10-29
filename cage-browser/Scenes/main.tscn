@@ -9,8 +9,16 @@
 [ext_resource type="Script" uid="uid://cahijqdo2nep" path="res://Scripts/download_manager.gd" id="6_6bp64"]
 [ext_resource type="Script" uid="uid://dhyajn5i656sy" path="res://Scripts/tab_manager.gd" id="6_21xkr"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v80lh"]
+bg_color = Color(0.04303915, 0.043039158, 0.04303913, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2yge"]
 bg_color = Color(0.00566115, 0.0056611523, 0.005661145, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8509804, 0.3764706, 0, 1)
 
 [node name="Control" type="Control" unique_id=1269449523]
 layout_mode = 3
@@ -21,10 +29,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jjvhh")
 
-[node name="Tabs" type="Panel" parent="." unique_id=151887045]
+[node name="Tabs" type="Panel" parent="." unique_id=151887045 groups=["EventManager"]]
 layout_mode = 0
 offset_right = 126.0
 offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_v80lh")
 script = ExtResource("2_kry3j")
 style_ohne_rand = ExtResource("3_344ge")
 style_mit_rand = ExtResource("4_ynf5e")
@@ -71,14 +80,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 7.0
-offset_right = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_h2yge")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_h2yge")
 theme_override_styles/focus = SubResource("StyleBoxFlat_h2yge")
+alignment = 1
 
 [node name="InputHandler" type="Node2D" parent="." unique_id=829249135]
 script = ExtResource("5_kry3j")
@@ -90,9 +98,37 @@ TabList = PackedStringArray("0")
 [node name="DownloadManager" type="Node2D" parent="." unique_id=2108502837]
 script = ExtResource("6_6bp64")
 
+[node name="FIP" type="Panel" parent="." unique_id=369535268]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -117.0
+offset_top = -33.0
+offset_right = 117.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="LineEdit" type="LineEdit" parent="FIP" unique_id=1035513226]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = ExtResource("3_344ge")
+theme_override_styles/read_only = ExtResource("3_344ge")
+theme_override_styles/focus = ExtResource("3_344ge")
+placeholder_text = "Search something..."
+alignment = 1
+
 [connection signal="console_message" from="CefTexture" to="Tabs" method="on_console_message"]
 [connection signal="download_requested" from="CefTexture" to="DownloadManager" method="on_download_requested"]
 [connection signal="download_updated" from="CefTexture" to="DownloadManager" method="on_download_updated"]
 [connection signal="load_finished" from="CefTexture" to="Tabs" method="on_cef_texture_load_finished"]
 [connection signal="title_changed" from="CefTexture" to="Tabs" method="on_cef_texture_title_changed"]
 [connection signal="text_submitted" from="SearchBar/LineEdit" to="SearchBar" method="_on_line_edit_text_submitted"]
+[connection signal="text_changed" from="FIP/LineEdit" to="TabManager" method="_on_line_edit_text_changed"]

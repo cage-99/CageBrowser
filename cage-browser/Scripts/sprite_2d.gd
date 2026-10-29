@@ -40,10 +40,24 @@ func _ready() -> void:
 
 func on_page_start_loading(url: String) -> void:
 	self.visible = false
+	var aktuelle_url = url
+	if aktuelle_url.is_empty(): return
+	
+	var domain = aktuelle_url.replacen("https://", "").replacen("http://", "")
+	if "/" in domain:
+		domain = domain.split("/")[0]
+	
+	var api_url = "https://getfavicon.dev/" + domain + "/high"
+	print("Lade Favicon über API: ", api_url)
+	
+	var error = http_request.request(api_url)
+	if error != OK:
+		push_error("Fehler beim Starten des Favicon-Downloads.")
 
 func on_page_loaded(url: String, http_status_code: int) -> void:
-	self.visible = true
+	#self.visible = true
 	var aktuelle_url = url
+	get_tree().get_first_node_in_group("EventManager").load_url_with_adblock("")
 	if aktuelle_url.is_empty(): return
 	
 	var domain = aktuelle_url.replacen("https://", "").replacen("http://", "")
