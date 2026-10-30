@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://b2usdo4rmqrb1" path="res://Scripts/input_handler.gd" id="5_kry3j"]
 [ext_resource type="Script" uid="uid://cahijqdo2nep" path="res://Scripts/download_manager.gd" id="6_6bp64"]
 [ext_resource type="Script" uid="uid://dhyajn5i656sy" path="res://Scripts/tab_manager.gd" id="6_21xkr"]
+[ext_resource type="Texture2D" uid="uid://kbsx67mpn5sk" path="res://Resources/Downloadcircle.png" id="9_ynf5e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v80lh"]
 bg_color = Color(0.04303915, 0.043039158, 0.04303913, 1)
@@ -19,6 +20,8 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.8509804, 0.3764706, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ynf5e"]
 
 [node name="Control" type="Control" unique_id=1269449523]
 layout_mode = 3
@@ -125,8 +128,48 @@ theme_override_styles/focus = ExtResource("3_344ge")
 placeholder_text = "Search something..."
 alignment = 1
 
+[node name="DownloadBar" type="TextureProgressBar" parent="." unique_id=332151081]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -49.0
+offset_top = -49.0
+offset_right = 1031.0
+offset_bottom = 1031.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.045, 0.045)
+value = 30.0
+rounded = true
+fill_mode = 4
+texture_progress = ExtResource("9_ynf5e")
+
+[node name="Button" type="Button" parent="DownloadBar" unique_id=1735770753]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ynf5e")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_ynf5e")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ynf5e")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_ynf5e")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ynf5e")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_ynf5e")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ynf5e")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_ynf5e")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ynf5e")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_ynf5e")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ynf5e")
+
 [connection signal="console_message" from="CefTexture" to="Tabs" method="on_console_message"]
 [connection signal="download_requested" from="CefTexture" to="DownloadManager" method="on_download_requested"]
+[connection signal="download_requested" from="CefTexture" to="DownloadManager" method="_on_download_requested"]
 [connection signal="download_updated" from="CefTexture" to="DownloadManager" method="on_download_updated"]
 [connection signal="load_finished" from="CefTexture" to="Tabs" method="on_cef_texture_load_finished"]
 [connection signal="title_changed" from="CefTexture" to="Tabs" method="on_cef_texture_title_changed"]

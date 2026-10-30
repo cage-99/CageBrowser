@@ -6,7 +6,8 @@ extends Control
 
 func _ready():
 	if webview:
-		webview.url = "https://google.com"
+		#var settings:String = ProjectSettings.globalize_path("res://HTML/settings.html")
+		webview.url = "https://google.com"#"file://"+settings
 		webview.enable_accelerated_osr = true
 		webview.set_anchors_preset(Control.PRESET_FULL_RECT)
 		webview.offset_left = 114
